@@ -54,7 +54,7 @@ class MainMenuState extends ModuleState
 			option.playAnimation((option.ID == currentSelected) ? 'selected' : 'idle');
 
 			if (option.ID == currentSelected)
-				camFollow.y = option.y;
+				camFollow.y = (FlxG.height / 2) + option.y;
 		}
 	}
 
@@ -88,11 +88,14 @@ class MainMenuState extends ModuleState
 		var scriptedMenuOptions = ScriptedMainMenuOption.listScriptClasses();
 		trace('Found ${scriptedMenuOptions.length} main menu options to load');
 		var i = 0;
+		var y = 0.0;
 		for (menuOption in scriptedMenuOptions)
 		{
 			var newmod = ScriptedMainMenuOption.init(menuOption, menuOption);
+			newmod.y = y;
 			if (newmod.active)
 			{
+				y += newmod.height + (i * 32);
 				newmod.ID = i;
 				menuOptions.add(newmod);
 				i++;

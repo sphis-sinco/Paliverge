@@ -12,11 +12,12 @@ class MainMenuOption extends FlxSprite
 	public var onSelected:FlxSignal = new FlxSignal();
 	public var onUnselect:FlxSignal = new FlxSignal();
 
-	public function new(id:String)
+	public function new(id:String, ?active:Bool = true)
 	{
 		super(0, 0);
 
 		this.id = id;
+		this.active = active;
 		loadAsset();
 
 		trace('Inited new main menu option of id: $id');

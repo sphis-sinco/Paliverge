@@ -37,6 +37,8 @@ class MainMenuState extends ModuleState
 		for (option in menuOptions.members)
 			safeMenuOptions.add(option);
 
+		add(safeMenuOptions);
+
 		camFollow = new FlxObject(FlxG.width / 2);
 		add(camFollow);
 
@@ -89,9 +91,12 @@ class MainMenuState extends ModuleState
 		for (menuOption in scriptedMenuOptions)
 		{
 			var newmod = ScriptedMainMenuOption.init(menuOption, menuOption);
-			newmod.ID = i;
-			menuOptions.add(newmod);
-			i++;
+			if (newmod.active)
+			{
+				newmod.ID = i;
+				menuOptions.add(newmod);
+				i++;
+			}
 		}
 	}
 }

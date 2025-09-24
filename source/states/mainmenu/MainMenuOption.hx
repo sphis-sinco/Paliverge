@@ -2,6 +2,7 @@ package states.mainmenu;
 
 import flixel.FlxSprite;
 import flixel.util.FlxSignal;
+import utils.PathUtils;
 
 class MainMenuOption extends FlxSprite
 {
@@ -16,7 +17,19 @@ class MainMenuOption extends FlxSprite
 		super(0, 0);
 
 		this.id = id;
+		loadAsset();
 	}
+
+	public function loadAsset()
+	{
+		loadGraphic(PathUtils.getImagePath('mainmenu/options/$id'), true, 256, 256);
+
+		animation.add('idle', [0]);
+		animation.add('selected', [1]);
+	}
+
+	public function playAnimation(name:String)
+		animation.play(name);
 
 	override public function toString():String
 		return 'MainMenuOption(id: $id)';

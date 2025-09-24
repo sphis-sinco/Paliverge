@@ -14,8 +14,6 @@ class Main extends Sprite
 	{
 		super();
 
-		PolymodHandler.forceReloadAssets();
-		
-		addChild(new FlxGame(0, 0, states.BlankState));
+		addChild(new FlxGame(0, 0, states.InitState));
 	}
 }

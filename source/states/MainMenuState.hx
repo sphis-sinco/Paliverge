@@ -4,7 +4,7 @@ class MainMenuState extends ModuleState
 {
 	public static var instance:MainMenuState = null;
 
-	override function new()
+	override public function new()
 	{
 		super('MainMenuState');
 		

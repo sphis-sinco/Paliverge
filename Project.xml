@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Sclait" file="sclait" main="Main" version="1.0.0" company="Sphis" />
+	<app title="Paliverge" file="Paliverge" main="Main" version="1.0.0" company="Sphis" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -29,11 +29,11 @@
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
-	<set name="BUILD_DIR" value="export" />
+	<set name="BUILD_DIR" value="export/debug" if="debug"/>
+	<set name="BUILD_DIR" value="export/release" unless="debug"/>
 
 	<source path="source" />
-	<assets path="assets" exclude="assets/scripts/tests/" unless="TEST_SCRIPTS"/>
-	<assets path="assets" if="TEST_SCRIPTS"/>
+	<assets path="assets"/>
 	<assets path="mods" />
 
 	<!-- _______________________________ Libraries ______________________________ -->

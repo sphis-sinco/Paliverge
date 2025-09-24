@@ -31,7 +31,7 @@ class BlankState extends FlxState
 
 		ModuleHandler.callEvent(module ->
 		{
-			module.onCreate(new CreateEvent(module));
+			module.onCreate(new CreateEvent(module, id));
 		});
 	}
 
@@ -40,7 +40,7 @@ class BlankState extends FlxState
 		super.update(elapsed);
 		ModuleHandler.callEvent(module ->
 		{
-			module.onUpdate(new UpdateEvent(module, elapsed));
+			module.onUpdate(new UpdateEvent(module, id, elapsed));
 		});
 	}
 

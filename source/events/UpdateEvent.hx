@@ -7,12 +7,12 @@ class UpdateEvent extends ModuleEvent
 {
 	public var elapsed:Float;
 
-	public function new(module:Module, elapsed:Float)
+	public function new(module:Module, state:String, elapsed:Float)
 	{
-                super(module);
+		super(module, state);
 		this.elapsed = elapsed;
 	}
 
 	override function toString():String
-		return 'UpdateEvent(module: $module, elapsed: $elapsed)';
+		return 'UpdateEvent(module: $module, state: $state, elapsed: $elapsed)';
 }

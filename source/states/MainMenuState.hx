@@ -1,13 +1,13 @@
 package states;
 
-class BlankState extends ModuleState
+class MainMenuState extends ModuleState
 {
-	public static var instance:BlankState = null;
+	public static var instance:MainMenuState = null;
 
-	override public function new(id:String)
+	override function new()
 	{
-		super(id);
-
+		super('MainMenuState');
+		
 		if (instance != null)
 			instance = null;
 		instance = this;

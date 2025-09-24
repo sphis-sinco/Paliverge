@@ -11,7 +11,7 @@ class InitState extends FlxState
                 super.create();
 
 		PolymodHandler.forceReloadAssets();
-                FlxG.switchState(() -> new MainMenuState());
+		FlxG.switchState(() -> new states.mainmenu.MainMenuState());
         }
         
 }

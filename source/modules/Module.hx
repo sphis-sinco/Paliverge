@@ -17,7 +17,7 @@ class Module implements IFlxDestroyable
 	}
 
 	public function toString():String
-		return 'Module(module: $id)';
+		return 'Module(id: $id)';
 
 	// the events
 

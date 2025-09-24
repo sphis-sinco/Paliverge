@@ -1,4 +1,4 @@
-package states;
+package states.mainmenu;
 
 class MainMenuState extends ModuleState
 {
@@ -12,6 +12,8 @@ class MainMenuState extends ModuleState
 			instance = null;
 		instance = this;
 	}
+
+	public var options:Array<MainMenuOption> = [];
 
 	override public function create()
 	{

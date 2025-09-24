@@ -6,6 +6,7 @@ import flixel.FlxG;
 import modules.ModuleHandler;
 import polymod.Polymod;
 import polymod.format.ParseRules;
+import states.mainmenu.MainMenuState;
 import utils.StateUtils;
 #if sys
 import sys.FileSystem;
@@ -91,10 +92,12 @@ class PolymodHandler
 	{
 		trace('[${error.severity}] (${Std.string(error.code).toUpperCase()}): ${error.message}');
 	}
+
 	public static function forceReloadAssets():Void
 	{
 		// Forcibly clear scripts so that scripts can be edited.
 		ModuleHandler.destroyModules();
+		MainMenuState.destroyMenuOptions();
 		Polymod.clearScripts();
 
 		scriptShit();
@@ -111,5 +114,6 @@ class PolymodHandler
 
 		loadMods(sysMods);
 		ModuleHandler.loadModules();
+		MainMenuState.loadMenuOptions();
 	}
 }

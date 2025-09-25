@@ -4,12 +4,10 @@ import events.FocusEvent;
 import events.StateSwitchEvent;
 import flixel.FlxG;
 import flixel.FlxState;
-import flixel.math.FlxMath;
 import modules.ModuleHandler;
 import polymod.Polymod;
 import polymod.format.ParseRules;
-import states.BlankState;
-import states.mainmenu.MainMenuState;
+import states.play.PlayState;
 import utils.StateUtils;
 #if sys
 import sys.FileSystem;
@@ -48,7 +46,10 @@ class PolymodHandler
 		addImports();
 	}
 
-	public static function addImports() {}
+	public static function addImports()
+	{
+		Polymod.addDefaultImport(PlayState); // Fix N.O.R. when trying to switch to PlayState
+	}
 
 	public static function buildParseRules():polymod.format.ParseRules
 	{

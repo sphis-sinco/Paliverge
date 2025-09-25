@@ -16,6 +16,11 @@ class InitState extends FlxState
 		ControlUtils.save.load(ControlUtils.save.publicPath);
 
 		PolymodHandler.forceReloadAssets();
+
+		#if (starting_state == "gameplay")
 		FlxG.switchState(() -> new states.mainmenu.MainMenuState());
+		#else
+		FlxG.switchState(() -> new states.mainmenu.MainMenuState());
+		#end
 	}
 }

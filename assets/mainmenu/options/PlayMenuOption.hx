@@ -3,6 +3,8 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import states.mainmenu.MainMenuOption;
+import states.mainmenu.MainMenuState;
+import states.play.PlayState;
 
 class PlayMenuOption extends MainMenuOption
 {
@@ -28,6 +30,14 @@ class PlayMenuOption extends MainMenuOption
 		{
 			FlxTween.cancelTweensOf(description);
 			FlxTween.tween(description, {alpha: 0}, .25);
+		});
+
+		onSelected.add(() ->
+		{
+			MainMenuState.defaultTransitionOut(() ->
+			{
+				FlxG.switchState(() -> new PlayState());
+			});
 		});
 
 		description.alpha = 0;

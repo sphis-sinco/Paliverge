@@ -35,6 +35,8 @@
 	<source path="source" />
 	<assets path="assets"/>
 	<assets path="mods" />
+	
+	<define name="controls_loadExtraTraces" unless="no_controls_loadExtraTraces"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

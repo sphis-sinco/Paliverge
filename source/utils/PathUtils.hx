@@ -7,14 +7,8 @@ import sys.io.File;
 
 class PathUtils
 {
-	public static function getAssetPath(path:String):String
-		return 'assets/$path';
-
-	public static function getDataPath(path:String):String
-		return getAssetPath('data/$path');
-
-	public static function getImagePath(path:String):String
-		return getAssetPath('images/$path.png');
+	public static function getAssetPath(path:String, folder:AssetFolders = blank, filetype:AssetTypes = none):String
+		return 'assets/$folder$path$filetype';
 
 	public static function saveContent(path:String, content:String)
 	{
@@ -40,4 +34,25 @@ class PathUtils
 		return Assets.getText(id);
 		#end
 	}
+}
+
+enum abstract AssetFolders(String)
+{
+	var blank = '';
+	var general = 'general/';
+	var mainmenu = 'mainmenu/';
+}
+
+enum abstract AssetTypes(String)
+{
+	var none = '';
+
+	var png = '.png';
+
+	var txt = '.txt';
+	var json = '.json';
+	var xml = '.xml';
+
+	var hx = '.hx';
+	var hxc = '.hxc';
 }

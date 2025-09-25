@@ -133,7 +133,7 @@ class MainMenuState extends ModuleState
 			FlxTween.cancelTweensOf(option);
 	}
 
-	public static function defaultTransitionIn()
+	public static function defaultTransitionIn(?endCallback:Void->Void)
 	{
 		var i = 0;
 		var y = 0.0;
@@ -143,11 +143,17 @@ class MainMenuState extends ModuleState
 			y += option.height + (i * 32);
 			i++;
 		}
+
+		if (endCallback != null)
+			endCallback();
 	}
 
-	public static function defaultTransitionOut()
+	public static function defaultTransitionOut(?endCallback:Void->Void)
 	{
 		for (option in instance.menuOptions)
 			FlxTween.tween(option, {alpha: 0, y: option.y - 25}, 1);
+
+		if (endCallback != null)
+			endCallback();
 	}
 }

@@ -12,7 +12,7 @@ class InitState extends FlxState
 	{
 		super.create();
 
-		ControlUtils.save = new ControlsSave(PathUtils.getDataPath('controls.xml'));
+		ControlUtils.save = new ControlsSave(PathUtils.getAssetPath('controls', general, xml));
 		ControlUtils.save.load(ControlUtils.save.publicPath);
 
 		PolymodHandler.forceReloadAssets();

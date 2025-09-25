@@ -25,7 +25,7 @@ class MainMenuOption extends FlxSprite
 
 	public function loadAsset()
 	{
-		loadGraphic(PathUtils.getImagePath('mainmenu/options/$id'), true, 256, 256);
+		loadGraphic(PathUtils.getAssetPath('options/$id', mainmenu, png), true, 256, 256);
 
 		animation.add('idle', [0]);
 		animation.add('selected', [1]);

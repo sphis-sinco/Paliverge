@@ -211,7 +211,7 @@ class PolymodInterpEx extends Interp
 		}
 		else
 		{
-			Polymod.debug('Registering scripted class $name');
+			// Polymod.debug('Registering scripted class $name');
 			_scriptClassDescriptors.set(name, c);
 		}
 	}
@@ -1820,8 +1820,8 @@ class PolymodInterpEx extends Interp
 							{
 								// We used a macro to map each abstract to its implementation.
 								importedClass.cls = PolymodScriptClass.abstractClassImpls.get(importedClass.fullPath);
-								trace('RESOLVED ABSTRACT CLASS ${importedClass.fullPath} -> ${Type.getClassName(importedClass.cls)}');
-								trace(Type.getClassFields(importedClass.cls));
+								// trace('RESOLVED ABSTRACT CLASS ${importedClass.fullPath} -> ${Type.getClassName(importedClass.cls)}');
+								// trace(Type.getClassFields(importedClass.cls));
 							}
 							else if (_scriptEnumDescriptors.exists(importedClass.fullPath))
 							{

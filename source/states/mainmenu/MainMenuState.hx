@@ -73,7 +73,7 @@ class MainMenuState extends ModuleState
 			option.playAnimation((option.ID == currentSelected) ? 'selected' : 'idle');
 
 			if (option.ID == currentSelected)
-				camFollow.y = (FlxG.height / 2) + option.y;
+				camFollow.y = (FlxG.height / 2) + option.y - (option.height / 2);
 		}
 	}
 

@@ -51,6 +51,8 @@ class MainMenuState extends ModuleState
 		add(noMenuOptionsText);
 
 		noMenuOptionsText.visible = menuOptions.length < 1;
+
+		menuOptions.members[currentSelected].onSelect.dispatch();
 	}
 
 	override public function update(elapsed:Float)

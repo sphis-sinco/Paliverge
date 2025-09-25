@@ -43,6 +43,7 @@ class ControlUtils
 class ControlsSave
 {
 	public static var controlGroups:Array<String> = ['game_', 'ui_'];
+	public static var keyEntries:Array<String> = ['left', 'down', 'up', 'right', 'jump', 'accept', 'leave'];
 
 	public var publicPath:Null<String>;
 
@@ -62,7 +63,6 @@ class ControlsSave
 		var xml = Xml.createElement('controls');
 
 		// #region generate save xml
-		var keys:Array<String> = ['left', 'down', 'up', 'right', 'jump', 'accept', 'leave'];
 
 		for (grp in controlGroups)
 		{
@@ -71,7 +71,7 @@ class ControlsSave
 			var controlGrp = Xml.createElement('control-group');
 			controlGrp.set('id', StringTools.replace(grp, '_', ''));
 
-			for (key in keys)
+			for (key in keyEntries)
 			{
 				if (ControlUtils.controls.exists(grp + key))
 				{

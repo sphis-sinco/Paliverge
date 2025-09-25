@@ -4,7 +4,9 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
+import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxColor;
 import utils.ControlUtils;
 
 class MainMenuState extends ModuleState
@@ -26,6 +28,8 @@ class MainMenuState extends ModuleState
 
 	public var currentSelected:Int = 0;
 
+	public var noMenuOptionsText:FlxText;
+
 	override public function create()
 	{
 		super.create();
@@ -39,6 +43,14 @@ class MainMenuState extends ModuleState
 		add(camFollow);
 
 		FlxG.camera.follow(camFollow, LOCKON, .2);
+
+		noMenuOptionsText = new FlxText(0, 0, 0, "/!\\ No Menu Options /!\\", 16);
+		noMenuOptionsText.scrollFactor.set();
+		noMenuOptionsText.color = FlxColor.RED;
+		noMenuOptionsText.screenCenter();
+		add(noMenuOptionsText);
+
+		noMenuOptionsText.visible = menuOptions.length < 1;
 	}
 
 	override public function update(elapsed:Float)

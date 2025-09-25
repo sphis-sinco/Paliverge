@@ -1,0 +1,29 @@
+import flixel.FlxG;
+import modules.Module;
+import modules.ModuleHandler;
+import states.mainmenu.MainMenuOption;
+
+class OptionsMenuOption extends MainMenuOption
+{
+	public var description:Module;
+
+	override public function new()
+	{
+		super('options');
+
+		description = ModuleHandler.getModule('mainmenu-description-text');
+		description.initTextField();
+		description.textField.text = "Edit some of your settings";
+		FlxG.state.add(description.textField);
+
+		onSelect.add(() ->
+		{
+			description.displayTextField();
+		});
+
+		onUnselect.add(() ->
+		{
+			description.hideTextField();
+		});
+	}
+}

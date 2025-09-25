@@ -681,27 +681,28 @@ class Polymod
 
 			for (textPath in potentialScripts)
 			{
-				if (textPath.endsWith(PolymodConfig.scriptClassExt))
-				{
-					var path = textPath;
-					if (!Polymod.assetLibrary.exists(path))
+				for (ext in PolymodConfig.scriptClassExts)
+					if (textPath.endsWith(ext))
 					{
-						trace('Trying libraries: ${libraryIds}');
-						for (libraryId in libraryIds)
-						{
-							if (Polymod.assetLibrary.exists('$libraryId:$textPath'))
-							{
-								trace('Found file in library: $libraryId');
-								path = '$libraryId:$textPath';
-								break;
-							}
-						}
+						var path = textPath;
 						if (!Polymod.assetLibrary.exists(path))
-							throw 'Couldn\'t find file "$textPath"';
+						{
+							trace('Trying libraries: ${libraryIds}');
+							for (libraryId in libraryIds)
+							{
+								if (Polymod.assetLibrary.exists('$libraryId:$textPath'))
+								{
+									trace('Found file in library: $libraryId');
+									path = '$libraryId:$textPath';
+									break;
+								}
+							}
+							if (!Polymod.assetLibrary.exists(path))
+								throw 'Couldn\'t find file "$textPath"';
+						}
+						Polymod.debug('Registering script class "$path"');
+						polymod.hscript._internal.PolymodScriptClass.registerScriptClassByPath(path);
 					}
-					Polymod.debug('Registering script class "$path"');
-					polymod.hscript._internal.PolymodScriptClass.registerScriptClassByPath(path);
-				}
 			}
 
 			#if hscript_typer
@@ -731,28 +732,29 @@ class Polymod
 		var futures:Array<lime.app.Future<Bool>> = [];
 		for (textPath in potentialScripts)
 		{
-			if (textPath.endsWith(PolymodConfig.scriptClassExt))
-			{
-				var path = textPath;
-				if (!Polymod.assetLibrary.exists(path))
+			for (ext in PolymodConfig.scriptClassExts)
+				if (textPath.endsWith(ext))
 				{
-					for (libraryId in libraryIds)
-					{
-						if (Polymod.assetLibrary.exists('$libraryId:$textPath'))
-						{
-							trace('Found file in library: $libraryId');
-							path = '$libraryId:$textPath';
-							break;
-						}
-					}
+					var path = textPath;
 					if (!Polymod.assetLibrary.exists(path))
-						throw 'Couldn\'t find file "$textPath" (tried libraries ${libraryIds})';
+					{
+						for (libraryId in libraryIds)
+						{
+							if (Polymod.assetLibrary.exists('$libraryId:$textPath'))
+							{
+								trace('Found file in library: $libraryId');
+								path = '$libraryId:$textPath';
+								break;
+							}
+						}
+						if (!Polymod.assetLibrary.exists(path))
+							throw 'Couldn\'t find file "$textPath" (tried libraries ${libraryIds})';
+					}
+					Polymod.debug('Fetching script class "$path"');
+					var future = polymod.hscript._internal.PolymodScriptClass.registerScriptClassByPathAsync(path);
+					if (future != null)
+						futures.push(future);
 				}
-				Polymod.debug('Fetching script class "$path"');
-				var future = polymod.hscript._internal.PolymodScriptClass.registerScriptClassByPathAsync(path);
-				if (future != null)
-					futures.push(future);
-			}
 		}
 		polymod.hscript._internal.PolymodInterpEx.validateImports();
 

@@ -19,9 +19,7 @@ class MainMenuState extends ModuleState
 		instance = this;
 	}
 
-	public static var menuOptions:FlxTypedGroup<MainMenuOption>;
-
-	public var safeMenuOptions:FlxTypedGroup<MainMenuOption>;
+	public var menuOptions:FlxTypedGroup<MainMenuOption>;
 
 	public var camFollow:FlxObject;
 
@@ -31,14 +29,10 @@ class MainMenuState extends ModuleState
 	{
 		super.create();
 
-		if (menuOptions == null)
-			loadMenuOptions();
+		menuOptions = new FlxTypedGroup<MainMenuOption>();
+		add(menuOptions);
 
-		safeMenuOptions = new FlxTypedGroup<MainMenuOption>();
-		for (option in menuOptions.members)
-			safeMenuOptions.add(option);
-
-		add(safeMenuOptions);
+		loadMenuOptions();
 
 		camFollow = new FlxObject(FlxG.width / 2);
 		add(camFollow);
@@ -56,24 +50,31 @@ class MainMenuState extends ModuleState
 			if (currentSelected < 0)
 				currentSelected = 0;
 
-			safeMenuOptions.members[currentSelected].onSelect.dispatch();
+			menuOptions.members[currentSelected].onSelect.dispatch();
 		}
 
 		if (ControlUtils.getControlJustReleased('ui_down'))
 		{
 			currentSelected++;
-			if (currentSelected >= safeMenuOptions.members.length)
-				currentSelected = safeMenuOptions.members.length - 1;
+			if (currentSelected >= menuOptions.members.length)
+				currentSelected = menuOptions.members.length - 1;
 
-			safeMenuOptions.members[currentSelected].onUnselect.dispatch();
+			menuOptions.members[currentSelected].onUnselect.dispatch();
 		}
 
-		for (option in safeMenuOptions.members)
+		for (option in menuOptions.members)
 		{
-			option.playAnimation((option.ID == currentSelected) ? 'selected' : 'idle');
+			if (option != null)
+			{
+				try
+				{
+					option.playAnimation((option.ID == currentSelected) ? 'selected' : 'idle');
 
-			if (option.ID == currentSelected)
-				camFollow.y = (FlxG.height / 2) + option.y - (option.height / 2);
+					if (option.ID == currentSelected)
+						camFollow.y = (FlxG.height / 2) + option.y - (option.height / 2);
+				}
+				catch (_) {}
+			}
 		}
 	}
 
@@ -84,26 +85,8 @@ class MainMenuState extends ModuleState
 		instance = null;
 	}
 
-	public static function destroyMenuOptions()
+	public function loadMenuOptions()
 	{
-		if (menuOptions == null)
-			return;
-
-		if (menuOptions.members.length > 0)
-			for (menuOption in menuOptions)
-			{
-				menuOption.destroy();
-				menuOptions.members.remove(menuOption);
-			}
-	}
-
-	public static function loadMenuOptions()
-	{
-		destroyMenuOptions();
-
-		if (menuOptions == null)
-			menuOptions = new FlxTypedGroup<MainMenuOption>();
-
 		var scriptedMenuOptions = ScriptedMainMenuOption.listScriptClasses();
 		trace('Found ${scriptedMenuOptions.length} main menu options to load');
 		var i = 0;

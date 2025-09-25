@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
+import utils.ControlUtils;
 
 class MainMenuState extends ModuleState
 {
@@ -48,6 +49,24 @@ class MainMenuState extends ModuleState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (ControlUtils.getControlJustReleased('ui_up'))
+		{
+			currentSelected--;
+			if (currentSelected < 0)
+				currentSelected = 0;
+
+			safeMenuOptions.members[currentSelected].onSelect.dispatch();
+		}
+
+		if (ControlUtils.getControlJustReleased('ui_down'))
+		{
+			currentSelected++;
+			if (currentSelected >= safeMenuOptions.members.length)
+				currentSelected = safeMenuOptions.members.length - 1;
+
+			safeMenuOptions.members[currentSelected].onUnselect.dispatch();
+		}
 
 		for (option in safeMenuOptions.members)
 		{

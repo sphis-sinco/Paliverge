@@ -51,6 +51,7 @@ class MainMenuState extends ModuleState
 				currentSelected = 0;
 
 			menuOptions.members[currentSelected].onSelect.dispatch();
+			menuOptions.members[currentSelected + 1].onUnselect.dispatch();
 		}
 
 		if (ControlUtils.getControlJustReleased('ui_down'))
@@ -59,7 +60,8 @@ class MainMenuState extends ModuleState
 			if (currentSelected >= menuOptions.members.length)
 				currentSelected = menuOptions.members.length - 1;
 
-			menuOptions.members[currentSelected].onUnselect.dispatch();
+			menuOptions.members[currentSelected].onSelect.dispatch();
+			menuOptions.members[currentSelected - 1].onUnselect.dispatch();
 		}
 
 		for (option in menuOptions.members)

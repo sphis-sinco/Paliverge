@@ -125,7 +125,7 @@ class MainMenuState extends ModuleState
 		var y = 0.0;
 		for (option in instance.menuOptions)
 		{
-			FlxTween.tween(option, {alpha: 1, y: y}, .5);
+			FlxTween.tween(option, {alpha: 1, y: y}, 1);
 			y += option.height + (i * 32);
 			i++;
 		}
@@ -134,6 +134,6 @@ class MainMenuState extends ModuleState
 	public static function defaultTransitionOut()
 	{
 		for (option in instance.menuOptions)
-			FlxTween.tween(option, {alpha: 0, y: option.y - 25}, (option.ID == instance.currentSelected) ? 1 : .5);
+			FlxTween.tween(option, {alpha: 0, y: option.y - 25}, 1);
 	}
 }

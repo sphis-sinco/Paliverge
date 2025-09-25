@@ -7,7 +7,6 @@ import states.mainmenu.MainMenuOption;
 class TestMenuOption extends MainMenuOption
 {
 	public var description:FlxText;
-	public var descriptionTween:FlxTween;
 
 	override public function new()
 	{

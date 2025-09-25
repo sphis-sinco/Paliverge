@@ -43,7 +43,7 @@ class MainMenuState extends ModuleState
 		camFollow = new FlxObject(FlxG.width / 2);
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, .5);
+		FlxG.camera.follow(camFollow, LOCKON, .2);
 	}
 
 	override public function update(elapsed:Float)

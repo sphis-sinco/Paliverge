@@ -27,6 +27,7 @@ class MainMenuState extends ModuleState
 	public var camFollow:FlxObject;
 
 	public var currentSelected:Int = 0;
+	public var canSelect:Bool = true;
 
 	public var noMenuOptionsText:FlxText;
 
@@ -59,7 +60,7 @@ class MainMenuState extends ModuleState
 	{
 		super.update(elapsed);
 
-		if (ControlUtils.getControlJustReleased('ui_up'))
+		if (ControlUtils.getControlJustReleased('ui_up') && canSelect)
 		{
 			currentSelected--;
 			if (currentSelected < 0)
@@ -69,7 +70,7 @@ class MainMenuState extends ModuleState
 			menuOptions.members[currentSelected + 1].onUnselect.dispatch();
 		}
 
-		if (ControlUtils.getControlJustReleased('ui_down'))
+		if (ControlUtils.getControlJustReleased('ui_down') && canSelect)
 		{
 			currentSelected++;
 			if (currentSelected >= menuOptions.members.length)
@@ -79,7 +80,7 @@ class MainMenuState extends ModuleState
 			menuOptions.members[currentSelected - 1].onUnselect.dispatch();
 		}
 
-		if (ControlUtils.getControlJustReleased('ui_accept'))
+		if (ControlUtils.getControlJustReleased('ui_accept') && canSelect)
 		{
 			menuOptions.members[currentSelected].onSelected.dispatch();
 		}

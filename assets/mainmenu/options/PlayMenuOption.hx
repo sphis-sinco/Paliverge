@@ -34,6 +34,7 @@ class PlayMenuOption extends MainMenuOption
 
 		onSelected.add(() ->
 		{
+			MainMenuState.instance.canSelect = false;
 			MainMenuState.defaultTransitionOut(() ->
 			{
 				FlxG.switchState(() -> new PlayState());

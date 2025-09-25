@@ -12,7 +12,6 @@ class Module implements IFlxDestroyable
 
 	public function new(id:String)
 	{
-		trace('Inited new module of id: $id');
 		this.id = id;
 	}
 

@@ -23,6 +23,7 @@ class ModuleHandler
 		for (module in newModules)
 		{
 			var newmod = ScriptedModule.init(module, module);
+			trace('* $module');
 			modules.push(newmod);
 		}
 	}
@@ -35,6 +36,7 @@ class ModuleHandler
 
 		return null;
 	}
+
 	public static function callEvent(callback:Module->Void)
 	{
 		if (callback == null)

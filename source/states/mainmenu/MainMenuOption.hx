@@ -19,8 +19,6 @@ class MainMenuOption extends FlxSprite
 		this.id = id;
 		this.active = active;
 		loadAsset();
-
-		trace('Inited new main menu option of id: $id');
 	}
 
 	public function loadAsset()

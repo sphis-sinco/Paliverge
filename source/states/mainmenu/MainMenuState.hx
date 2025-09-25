@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
+import flixel.tweens.FlxTween;
 import utils.ControlUtils;
 
 class MainMenuState extends ModuleState
@@ -64,6 +65,11 @@ class MainMenuState extends ModuleState
 			menuOptions.members[currentSelected - 1].onUnselect.dispatch();
 		}
 
+		if (ControlUtils.getControlJustReleased('ui_accept'))
+		{
+			menuOptions.members[currentSelected].onSelected.dispatch();
+		}
+
 		for (option in menuOptions.members)
 		{
 			if (option != null)
@@ -105,5 +111,29 @@ class MainMenuState extends ModuleState
 				i++;
 			}
 		}
+	}
+
+	public static function clearAllOptionTweens()
+	{
+		for (option in instance.menuOptions)
+			FlxTween.cancelTweensOf(option);
+	}
+
+	public static function defaultTransitionIn()
+	{
+		var i = 0;
+		var y = 0.0;
+		for (option in instance.menuOptions)
+		{
+			FlxTween.tween(option, {alpha: 1, y: y}, .5);
+			y += option.height + (i * 32);
+			i++;
+		}
+	}
+
+	public static function defaultTransitionOut()
+	{
+		for (option in instance.menuOptions)
+			FlxTween.tween(option, {alpha: 0, y: option.y - 25}, (option.ID == instance.currentSelected) ? 1 : .5);
 	}
 }

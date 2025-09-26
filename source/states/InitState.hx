@@ -15,7 +15,13 @@ class InitState extends FlxState
 
 		Log.trace = function(v, ?infos)
 		{
-			var str = '${(infos.customParams == null) ? '[${infos.fileName}:${infos.lineNumber}] ' : '${infos.customParams[0]}'}$v';
+			var customParams = '';
+
+			if (infos.customParams != null)
+				for (param in infos.customParams)
+					customParams += '$param ';
+
+			var str = '${(infos.customParams == null) ? '[${infos.fileName}:${infos.lineNumber}] ' : '[${customParams}] '}$v';
 			#if js
 			if (js.Syntax.typeof(untyped console) != "undefined" && (untyped console).log != null)
 				(untyped console).log(str);

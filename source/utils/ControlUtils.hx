@@ -163,7 +163,6 @@ class ControlsSave
 			catch (e)
 			{
 				trace(e.message);
-
 				trace(control.innerHTML);
 			}
 			i++;

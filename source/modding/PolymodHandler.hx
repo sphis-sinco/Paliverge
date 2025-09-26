@@ -97,7 +97,7 @@ class PolymodHandler
 
 	public static function onError(error:PolymodError)
 	{
-		trace('[${error.severity}] (${Std.string(error.code).toUpperCase()}): ${error.message}');
+		trace('[${error.severity}] (${Std.string(error.code).toUpperCase()}): ${error.message}', 'PolymodHandler');
 	}
 
 	public static function forceReloadAssets():Void

@@ -110,7 +110,7 @@ class MainMenuState extends ModuleState
 
 	public function loadMenuOptions()
 	{
-		final customParams = {customParams: ['[Scriptloader // MainMenuOption]']};
+		final customParams = 'Scriptloader // MainMenuOption';
 
 		var scriptedMenuOptions = ScriptedMainMenuOption.listScriptClasses();
 		trace('Found ${scriptedMenuOptions.length} main menu options to load', customParams);

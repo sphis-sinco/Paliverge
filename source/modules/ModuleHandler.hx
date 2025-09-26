@@ -18,7 +18,7 @@ class ModuleHandler
 	{
 		destroyModules();
 
-		final customParams = {customParams: ['[Scriptloader // Module]']};
+		final customParams = 'Scriptloader // Module';
 
 		var newModules = ScriptedModule.listScriptClasses();
 		trace('Found ${newModules.length} modules to load', customParams);

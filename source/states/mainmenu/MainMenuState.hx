@@ -110,14 +110,16 @@ class MainMenuState extends ModuleState
 
 	public function loadMenuOptions()
 	{
+		final customParams = {customParams: ['[Scriptloader // MainMenuOption]']};
+
 		var scriptedMenuOptions = ScriptedMainMenuOption.listScriptClasses();
-		trace('Found ${scriptedMenuOptions.length} main menu options to load');
+		trace('Found ${scriptedMenuOptions.length} main menu options to load', customParams);
 		var i = 0;
 		var y = 0.0;
 		for (menuOption in scriptedMenuOptions)
 		{
 			var newmod = ScriptedMainMenuOption.init(menuOption, menuOption);
-			trace('* $menuOption (${(newmod.active) ? 'actived: added' : 'in-active: not added'})');
+			trace('* $menuOption (${(newmod.active) ? 'actived: added' : 'in-active: not added'})', customParams);
 			newmod.y = y;
 			if (newmod.active)
 			{

@@ -22,7 +22,7 @@ class LevelSelectState extends ModuleState
 		instance = this;
 	}
 
-	public var levels:FlxTypedGroup<MainMenuOption>;
+	public var levels:FlxTypedGroup<Level>;
 
 	public var camFollow:FlxObject;
 

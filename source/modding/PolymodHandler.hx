@@ -7,6 +7,11 @@ import flixel.FlxState;
 import modules.ModuleHandler;
 import polymod.Polymod;
 import polymod.format.ParseRules;
+import states.BlankState;
+import states.InitState;
+import states.ModuleState;
+import states.levelselector.LevelSelectState;
+import states.mainmenu.MainMenuState;
 import states.play.PlayState;
 import utils.StateUtils;
 #if sys
@@ -49,6 +54,11 @@ class PolymodHandler
 	public static function addImports()
 	{
 		Polymod.addDefaultImport(PlayState); // Fix N.O.R. when trying to switch to PlayState
+		Polymod.addDefaultImport(LevelSelectState); // Fix N.O.R. when trying to switch to LevelSelectState
+		Polymod.addDefaultImport(MainMenuState);
+		Polymod.addDefaultImport(BlankState);
+		Polymod.addDefaultImport(ModuleState);
+		Polymod.addDefaultImport(InitState);
 	}
 
 	public static function buildParseRules():polymod.format.ParseRules

@@ -791,7 +791,7 @@ class Polymod
 	public static function debug(message:String, ?posInfo:haxe.PosInfos):Void
 	{
 		if (PolymodConfig.debug)
-			trace(message);
+			trace(message, 'Polymod');
 	}
 
 	/**

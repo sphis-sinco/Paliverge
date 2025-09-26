@@ -41,6 +41,7 @@ enum abstract AssetFolders(String)
 	var blank = '';
 	var general = 'general/';
 	var mainmenu = 'mainmenu/';
+	var levelselect = 'levelselect/';
 }
 
 enum abstract AssetTypes(String)

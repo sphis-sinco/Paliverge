@@ -2,7 +2,7 @@ import events.StateSwitchEvent;
 import modules.Module;
 import states.mainmenu.MainMenuState;
 
-class TransitionIn extends Module
+class MainMenuTransitionIn extends Module
 {
 	override public function new()
 	{

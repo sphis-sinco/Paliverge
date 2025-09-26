@@ -2,6 +2,7 @@ import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import states.levelselector.LevelSelectState;
 import states.mainmenu.MainMenuOption;
 import states.mainmenu.MainMenuState;
 import states.play.PlayState;
@@ -37,7 +38,7 @@ class PlayMenuOption extends MainMenuOption
 			MainMenuState.instance.canSelect = false;
 			MainMenuState.defaultTransitionOut(() ->
 			{
-				FlxG.switchState(() -> new PlayState());
+				FlxG.switchState(() -> new LevelSelectState());
 			});
 		});
 

@@ -18,14 +18,12 @@ class ModuleHandler
 	{
 		destroyModules();
 
-		final customParams = 'Scriptloader // Module';
-
 		var newModules = ScriptedModule.listScriptClasses();
-		trace('Found ${newModules.length} modules to load', customParams);
+		trace('Found ${newModules.length} modules to load');
 		for (module in newModules)
 		{
 			var newmod = ScriptedModule.init(module, module);
-			trace('* $module', customParams);
+			trace('* $module');
 			modules.push(newmod);
 		}
 	}

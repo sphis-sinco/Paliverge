@@ -791,7 +791,7 @@ class Polymod
 	public static function debug(message:String, ?posInfo:haxe.PosInfos):Void
 	{
 		if (PolymodConfig.debug)
-			trace(message, 'Polymod');
+			trace(message);
 	}
 
 	/**
@@ -807,7 +807,8 @@ class Polymod
 		}
 		else
 		{
-			Polymod.warning(POLYMOD_NOT_LOADED, 'Polymod is not loaded yet, cannot list files.');
+			Polymod.warning(POLYMOD_NOT_LOADED, ' Polymod is not loaded yet,
+				cannot list files.');
 			return [];
 		}
 	}
@@ -822,7 +823,7 @@ class Polymod
 		#if hscript
 		PolymodScriptClass.importOverrides.set(importAlias, importClass);
 		#else
-		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, 'Scripted classes imports were requested, but hscript is not installed.');
+		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, ' Scripted classes imports were requested, but hscript is not installed.');
 		#end
 	}
 
@@ -831,7 +832,8 @@ class Polymod
 		#if hscript
 		PolymodScriptClass.importOverrides.remove(importAlias);
 		#else
-		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, 'Scripted classes imports were requested, but hscript is not installed.');
+		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, ' Scripted classes imports were requested,
+				but hscript is not installed.');
 		#end
 	}
 
@@ -845,7 +847,7 @@ class Polymod
 		#if hscript
 		PolymodScriptClass.defaultImports.set(importAlias == null ? Type.getClassName(importClass) : importAlias, importClass);
 		#else
-		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, 'Scripted classes imports were requested, but hscript is not installed.');
+		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, ' Scripted classes imports were requested, but hscript is not installed.');
 		#end
 	}
 
@@ -858,7 +860,8 @@ class Polymod
 		#if hscript
 		addImportAlias(importPath, null);
 		#else
-		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, 'Scripted classes imports were requested, but hscript is not installed.');
+		Polymod.warning(PolymodErrorCode.SCRIPT_HSCRIPT_NOT_INSTALLED, ' Scripted classes imports were requested,
+				but hscript is not installed.');
 		#end
 	}
 }
@@ -876,9 +879,7 @@ typedef ModContributor =
 };
 
 /**
- * A type representing a mod's dependencies.
- *
- * The map takes the mod's ID as the key and the required version as the value.
+ * A type representing a mod' s dependencies. * * The map takes the mod 's ID as the key and the required version as the value.
  * The version follows the Semantic Versioning format, with `*.*.*` meaning any version.
  */
 typedef ModDependencies = Map<String, VersionRule>;
@@ -927,13 +928,11 @@ class ModMetadata
 	public var license:String;
 
 	/**
-	 * Binary data containing information on the mod's icon file, if it exists.
-	 * This is useful when you want to display the mod's icon in your application's mod menu.
-	 */
-	public var icon:Bytes = null;
+		* Binary data containing information on the mod' s icon file, if it
+							exists. * This is useful when you want to display the mod 's icon in your application' s mod menu. * / public var icon:Bytes = null;
 
-	/**
-	 * The path on the filesystem to the mod's icon file.
+						/**
+						 * The path on the filesystem to the mod's icon file.
 	 */
 	public var iconPath:String;
 
